@@ -17,12 +17,12 @@
     int length = end-start
     play(sequence[start...end))
 
-    if random(0,1) > a\*tanh(counter\*b)+c:
+    if random(0,1) > a*tanh(counter*b)+c:
       end++
     else
       counter++
 
-    if random(0,1) > d\*tanh(length\*e)+f:
+    if random(0,1) > d*tanh(length*e)+f:
       start++
 ```
   
