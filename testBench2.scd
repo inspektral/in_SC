@@ -16,8 +16,13 @@ SynthDef.new(\sy4, {
 	Out.ar(0, VarSaw.ar(320!2));
 }).add;
 
+SynthDef.new(\sy5, {
+	Out.ar(0, VarSaw.ar(800!2));
+}).add;
+
+
 //SynthDefs Array, we dont care about the names
-a = [\sy1, \sy2, \sy3, \sy4]
+a = [\sy1, \sy2, \sy3, \sy4, \sy2, \sy5,\sy1, \sy2, \sy3, \sy3,\sy3, \sy1, \sy1]
 
 //audio test
 h = Synth(a[0])
@@ -30,23 +35,38 @@ b = a.slice((0..3))
 a.size
 b.size
 
-// routine, pretty easy to understand, theres two loops, the actual one is going to be quite similar
+// routine, pretty easy to understand, theres two nested loops
 
 //watch readme to  get how loops work
 
 (
-var r; // we need to add al the useful variables
+var b, r, e = 1, s = 0, count = 0, loops = 0; // we need to add al the useful variables
 r = Routine {
-	4.do{ //this one is going to be a while
-		//slicing is gonna happen here
-		b.size.do { arg i; //this is the play thing
+	while({loops < 1}, {
+		count = count + 1;
+		count.postln;
+		//slicing
+		b = a.slice((s..e));
+		b.postln;
+
+		//playing one iteration
+		b.size.do { arg i;
 			x = Synth(b[i]);
-			0.04.wait; //waiting and freeing need to be automated
+			0.15.wait; //waiting and freeing need to be automated waitforfree and env
 		    x.free;
-		    }
-		//here we're gonna  to update indexes
-	}
+		    };
+
+		//updating indexes
+		if ( 0.03.coin, { e = e + 1; });
+		if ( 0.03.coin, { s = s + 1; });
+		if ( s==e, {s = s - 1;});
+		if ( e==a.size, {e = 0; loops = loops + 1});
+		if ( s==a.size, {s = 0;});
+	})
 }.play;
 )
+
+0.54930614433405.tanh
+
 
 
