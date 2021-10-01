@@ -6,8 +6,6 @@ var currentSlice = [], start = 0, end = 1, count = 0,
 
 r = Routine {
 	while({end < ~score1.size}, {
-		count.postln;
-		currentSlice.size.postln;
 		//slicing
 		currentSlice = ~score1.slice((start..end));
 		currentSlice.postln;
@@ -25,7 +23,6 @@ r = Routine {
 		//updating indexes
 		threshEnd = a1*(tanh(count*b1+c1)+1);
 		threshStart = d1*(tanh(currentSlice.size*e1+f1)+1);
-		[threshEnd, threshStart].postln;
 		if ( 2.0.rand < threshEnd,
 			{ end = end + 1; count = 0;},
 			{count = count+1;});

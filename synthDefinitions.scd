@@ -1,5 +1,5 @@
 // evaluate file for length change to take place
-~length = 0.2;
+~length = 0.1;
 
 /*
 \rest:
@@ -19,13 +19,11 @@ SynthDef(\saw,{
 	frq = 200,
 	amp = 0.5,
 	out = 0,
-	atk = 0,
-	dec = 0.1;
+	len = 0.1,
+	fde = 0.005;
 
 	var	sig, env;
-	env= Env([0,1,0,0],[atk, dec, (~length-atk-dec)]);
+	env = Env([0,1,1,0, 0],[fde, len, fde, ~length-fde-len-fde]);
 	sig = VarSaw.ar(frq!2, mul:amp)*EnvGen.kr(env, doneAction:2);
 	Out.ar(out, sig) ;
 }).add;
-
-
