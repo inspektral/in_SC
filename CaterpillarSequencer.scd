@@ -1,13 +1,11 @@
-( //this can't be changed while is running
-var currentSlice = [], start = 0, end = 1, count = 0,
-    a1=1, b1=0.05, c1=2.neg, threshEnd,
-    d1=1, e1=0.1, f1=2.neg, threshStart;
-
-
-r = Routine {
-	while({end < ~score1.size}, {
+( //this can't be changed while is runnin, and it's okay
+r = {
+	arg score, a1=1, b1=0.05, c1=2.neg, d1=1, e1=0.1, f1=2.neg;
+	var currentSlice = [], start = 0, end = 1, count = 0, threshEnd, threshStart;
+	Routine {
+		while({end < score.value.size}, {
 		//slicing
-		currentSlice = ~score1.slice((start..end));
+			currentSlice = score.value.slice((start..end));
 		currentSlice.postln;
 
 		//playing one iteration
@@ -31,4 +29,7 @@ r = Routine {
 		if (start == end , {start = start - 1});
 	});
 }.play;
-)
+})
+
+//this starts the thing
+r.value(~score1)
