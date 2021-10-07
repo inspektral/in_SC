@@ -27,3 +27,18 @@ SynthDef(\saw,{
 	sig = VarSaw.ar(frq!2, mul:amp)*EnvGen.kr(env, doneAction:2);
 	Out.ar(out, sig) ;
 }).add;
+
+SynthDef(\pls,{
+	arg
+	frq = 200,
+	amp = 0.2,
+	out = 0,
+	len = 0.1,
+	fde = 0.005;
+
+	var	sig, env;
+	env = Env([0,1,1,0, 0],[fde, len, fde, ~length-fde-len-fde]);
+	sig = Pulse.ar(frq!2, mul:amp)*EnvGen.kr(env, doneAction:2);
+	Out.ar(out, sig) ;
+
+}).add;
