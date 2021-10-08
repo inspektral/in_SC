@@ -22,11 +22,11 @@
 (
 // this can be changed while the sequencer is running, it's the fun part
 ~score2.clear;
-~score2.addAll([[\pls, [\frq, 2*66]],
-	[\pls, [\frq, 2*100]],
+~score2.addAll([[\pls, [\frq, 2*66, \amp, 0.25]],
+	[\pls, [\frq, 2*100, \amp, 0.25]],
 	[\pls, [\frq, 2*2500, \len, 0.01, \amp, 0.25]],
-	[\pls, [\frq, 2*70, \len, 0.09]],
-	[\pls, [\frq, 2*1000, \len, 0.02]],
+	[\pls, [\frq, 2*70, \len, 0.09, \amp, 0.25]],
+	[\pls, [\frq, 2*1000, \len, 0.02, \amp, 0.25]],
 	[\pls, [\frq, 2*1050, \len, 0.01, \amp, 0.25]],
 	[\pls, [\frq, 2*50, \len, 0.09, \amp, 0.3]],
 	[\pls, [\frq, 2*45, \len, 0.05, \amp, 0.7]],

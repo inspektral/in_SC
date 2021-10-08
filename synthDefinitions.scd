@@ -38,7 +38,7 @@ SynthDef(\pls,{
 
 	var	sig, env;
 	env = Env([0,1,1,0, 0],[fde, len, fde, ~length-fde-len-fde]);
-	sig = Pulse.ar(frq!2, mul:amp)*EnvGen.kr(env, doneAction:2);
+	sig = Pulse.ar(frq!2, mul:amp/2)*EnvGen.kr(env, doneAction:2);
 	Out.ar(out, sig) ;
 
 }).add;

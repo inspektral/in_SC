@@ -1,6 +1,6 @@
 ( //this can't be changed while is runnin, and it's okay
-r = {
-	arg score, a1=1, b1=0.05, c1=2.neg, d1=1, e1=0.1, f1=2.neg;
+~catSeq = {
+	arg score, time = 0, paramsEnd = [1,0.5, 2.neg], paramsStart = [1,0.1, 2.neg];
 	var currentSlice = [], start = 0, end = 1, count = 0, threshEnd, threshStart;
 	Routine {
 		while({end < score.asArray.size}, {
@@ -15,12 +15,13 @@ r = {
 				currentLine = [\rest, []];
 			});
 			currentSynth = Synth(currentLine[0], currentLine[1]);
-			currentSynth.waitForFree;
+				if(time == 0, {currentSynth.waitForFree;}, {time.wait;})
+
 		    };
 
 		//updating indexes
-		threshEnd = a1*(tanh(count*b1+c1)+1);
-		threshStart = d1*(tanh(currentSlice.size*e1+f1)+1);
+		threshEnd = paramsEnd[0]*(tanh(count*paramsEnd[1]+paramsEnd[2])+1);
+		threshStart = paramsStart[0]*(tanh(currentSlice.size*paramsStart[1]+paramsStart[2])+1);
 		if ( 2.0.rand < threshEnd,
 			{ end = end + 1; count = 0;},
 			{count = count+1;});
@@ -32,7 +33,8 @@ r = {
 })
 
 //this starts the thing
-r.value(~score1)
-r.value(~score2)
-
+(
+~catSeq.value(~score1, 0.3);
+~catSeq.value(~score2, 0.3/4);
+)
 ~score1
