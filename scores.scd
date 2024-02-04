@@ -1,6 +1,7 @@
 (
 ~score1 = List[];
 ~score2 = List[];
+~score3 = List[];
 )
 
 (
@@ -32,5 +33,18 @@
 	[\pls, [\frq, 2*45, \len, 0.05, \amp, 0.7]],
 	[\pls, [\frq, 2*50, \len, 0.09, \amp, 0.5]],
 	[\pls, [\frq, 2*5000, \len, 0.02]]
+]);
+
+~score3.clear;
+~score3.addAll([[\pls, [\frq, 2*66, \amp, 0.25]],
+	[\rest],
+	[\pls, [\frq, 2*66, \amp, 0.25]],
+	[\rest],
+	[\pls, [\frq, 3*66, \amp, 0.25]],
+	[\pls, [\frq, 4*66, \amp, 0.25]],
+	[\rest],
+	[\rest],
+	[\pls, [\frq, 66, \amp, 0.25]],
+	[\rest]
 ]);
 )

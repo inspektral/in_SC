@@ -16,8 +16,7 @@
 			});
 			currentSynth = Synth(currentLine[0], currentLine[1]);
 				if(time == 0, {currentSynth.waitForFree;}, {time.wait;})
-
-		    };
+		};
 
 		//updating indexes
 		threshEnd = paramsEnd[0]*(tanh(count*paramsEnd[1]+paramsEnd[2])+1);
@@ -37,4 +36,6 @@
 ~catSeq.value(~score1, 0.3);
 ~catSeq.value(~score2, 0.3/4);
 )
+(~catSeq.value(~score3, 0.1);)
+
 ~score1
