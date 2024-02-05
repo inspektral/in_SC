@@ -17,7 +17,6 @@ SynthDef(\hello, {
 }).add;
 
 // Load a sound file into a buffer
-b = Buffer.read(s, "C:/Users/titos/in_SC/samples/mp3_synth_1.wav");
 
 // Define a SynthDef for the sampler
 SynthDef(\simpleSampler, { 

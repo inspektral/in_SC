@@ -42,3 +42,9 @@ SynthDef(\pls,{
 	Out.ar(out, sig) ;
 
 }).add;
+
+SynthDef(\sampler, {
+    arg buffer = 0, out = 0, rate = 1.0, start = 0, end = 1, amp = 1.0;
+    var sig = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer), 1, 0, 1, loop:0.0, doneAction:2);
+    Out.ar(out, sig * amp);
+}).add;

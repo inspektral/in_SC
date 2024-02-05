@@ -36,6 +36,6 @@
 ~catSeq.value(~score1, 0.3);
 ~catSeq.value(~score2, 0.3/4);
 )
-(~catSeq.value(~score3, 0.1);)
+(~catSeq.value(~score4, 0.2, [1, 0.1, 3.neg], [1, 0.1, 3.neg]);)
 
 ~score1
