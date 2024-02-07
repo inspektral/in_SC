@@ -1,9 +1,13 @@
 
 Server.killAll;
 
-s.options.inDevice = "Windows DirectSound : Microphone (C-Media(R) Audio)";
-s.options.outDevice = "Windows DirectSound : Speakers (C-Media(R) Audio)";
+s.options.inDevice = "ReaRoute";
+s.options.outDevice = "Rearoute";
 s.options.sampleRate = 48000;
+s.options.numOutputBusChannels=4;
+
+s.reboot
+ServerOptions.outDevices;
 
 s.boot;
 
@@ -13,7 +17,7 @@ SynthDef(\hello, {
 
     var sound = SinOsc.ar(freq) * amp;
 
-    Out.ar(0, sound);
+    Out.ar( sound);
 }).add;
 
 // Load a sound file into a buffer
@@ -52,6 +56,17 @@ Synth(\hello);
 s.meter;
 
 s.quit;
+
+(
+SynthDef("tutorial-args", { arg freq = 440, out = 0;
+    Out.ar(out, SinOsc.ar(freq, 0, 0.2));
+}).add;
+)
+
+x = Synth("tutorial-args", ["out", 3, "freq", 660]);
+x.free;
+
+
 
 
 
