@@ -7,11 +7,13 @@ This is used by default when a line is empty
 ~length can be changed to any number in seconds
 WARNING: deleting \rest crashes the sequencer if score contains empty lines
 */
-SynthDef(\rest, {
-	var sig, env = Env([0,0],~length);
-	sig = PinkNoise.ar(0)*EnvGen.kr(env, doneAction:2);
-	Out.ar(0, sig);
-}).add;
+(
+	SynthDef(\rest, {
+		var sig, env = Env([0,0],~length);
+		sig = PinkNoise.ar(0)*EnvGen.kr(env, doneAction:2);
+		Out.ar(0, sig);
+	}).add;
+)
 
 // this can be changed while the sequencer is running
 SynthDef(\saw,{

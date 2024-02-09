@@ -4,7 +4,7 @@ Server.killAll;
 s.options.inDevice = "ReaRoute";
 s.options.outDevice = "Rearoute";
 s.options.sampleRate = 48000;
-s.options.numOutputBusChannels=4;
+s.options.numOutputBusChannels=8;
 
 s.reboot
 ServerOptions.outDevices;
@@ -37,17 +37,19 @@ SynthDef(\sampler, {
     Out.ar(out, sig * amp);
 }).add;
 
-SynthDef(\samplerNoLoop, {
-    arg buffer = 0, out = 0, rate = 1.0, start = 0, end = 1, amp = 1.0;
-    var sig = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer), rate, start, end);
-    // Remove unnecessary Phasor
-    Out.ar(out, sig * amp);
-}).add;
+(
+    SynthDef(\samplerNoLoop, {
+        arg buffer = 0, out = 0, rate = 1.0, start = 0, end = 1, amp = 1.0;
+        var sig = PlayBuf.ar(1, buffer, BufRateScale.kr(buffer), rate, start, end);
+        // Remove unnecessary Phasor
+        Out.ar(out, sig * amp);
+    }).add;
+)
 
 // Play the sampler
 x = Synth(\simpleSampler, ["bufnum": ~buffer.bufnum]);
 
-x = Synth(\sampler, [\buffer, b]);
+x = Synth(\sampler, [\buffer, ~b1, \out, [0, 1]]);
 
 
 Synth(\hello);

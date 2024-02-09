@@ -25,7 +25,7 @@
 			{ end = end + 1; count = 0;},
 			{count = count+1;});
 		if ( 2.0.rand < threshStart,
-			{ start = start + 1; });
+			{ start = start + 1; count = 0});
 		if (start == end , {start = start - 1});
 	});
 }.play;
@@ -36,6 +36,12 @@
 ~catSeq.value(~score1, 0.3);
 ~catSeq.value(~score2, 0.3/4);
 )
-(~catSeq.value(~score4, 0.2, [1, 0.1, 3.neg], [1, 0.1, 3.neg]);)
+(~catSeq.value(~score4, 0.2, [1, 0.1, 3.neg], [1, 0.6, 3.neg]);)
+(~catSeq.value(~score4, 0.02, [1, 1.5, 3.neg], [1, 0.2, 2.neg]);)
+
+
+//fast
+(~catSeq.value(~score5, 0.02, [1, 1.5, 3.neg], [1, 0.2, 2.neg]);)
+
 
 ~score1
